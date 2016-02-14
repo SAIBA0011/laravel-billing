@@ -218,7 +218,7 @@
 				@endif
 				
 				<li class="text-extra-large text-dark margin-top-15">
-					<strong>Amound Paid:</strong> R{{ number_format($invoice->amount / 100, 2) }}
+					<strong>Total:</strong> R{{ number_format($invoice->amount / 100, 2) }}
 				</li>
 			</ul>
 			<br>
