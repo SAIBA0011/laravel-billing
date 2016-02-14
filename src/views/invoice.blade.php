@@ -71,9 +71,9 @@
 			@endif
 			
 			@if ($item->amount >= 0)
-				<td>${{ number_format($item->amount / 100, 2) }}</td>
+				<td>R{{ number_format($item->amount / 100, 2) }}</td>
 			@else
-				<td>-${{ number_format(abs($item->amount) / 100, 2) }}</td>
+				<td>-R{{ number_format(abs($item->amount) / 100, 2) }}</td>
 			@endif
 		</tr>
 	@endforeach
@@ -83,7 +83,7 @@
 		<tr>
 			<td>&nbsp;</td>
 			<td style="text-align: right;">Subtotal:</td>
-			<td><strong>${{ number_format($invoice->subtotal / 100, 2) }}</strong></td>
+			<td><strong>R{{ number_format($invoice->subtotal / 100, 2) }}</strong></td>
 		</tr>
 	@endif
 	
@@ -95,7 +95,7 @@
 					{{ array_get($discount, 'coupon') }}
 					
 					@if (array_get($discount, 'amount_off'))
-						(${{ array_get($discount, 'amount_off') / 100 }} Off)
+						(R{{ array_get($discount, 'amount_off') / 100 }} Off)
 					@else
 						({{ array_get($discount, 'percent_off') }}% Off)
 					@endif
@@ -104,9 +104,9 @@
 				<td>
 					<strong>
 						@if (array_get($discount, 'amount_off'))
-							-${{ number_format(abs(array_get($discount, 'amount_off') / 100), 2) }}
+							-R{{ number_format(abs(array_get($discount, 'amount_off') / 100), 2) }}
 						@else
-							-${{ number_format($invoice->subtotal * (array_get($discount, 'percent_off') / 100) / 100, 2) }}
+							-R{{ number_format($invoice->subtotal * (array_get($discount, 'percent_off') / 100) / 100, 2) }}
 						@endif
 					</strong>
 				</td>
@@ -119,7 +119,7 @@
 		<tr>
 			<td>&nbsp;</td>
 			<td style="text-align: right;">Total:</td>
-			<td><strong>${{ number_format($invoice->total / 100, 2) }}</strong></td>
+			<td><strong>R{{ number_format($invoice->total / 100, 2) }}</strong></td>
 		</tr>
 	@endif
 	
@@ -130,9 +130,9 @@
 			<td style="text-align: right;">Starting Customer Balance:</td>
 			<td>
 				@if ($invoice->starting_balance >= 0)
-					<strong>${{ number_format($invoice->starting_balance / 100, 2) }}</strong>
+					<strong>R{{ number_format($invoice->starting_balance / 100, 2) }}</strong>
 				@else
-					<strong>-${{ number_format(abs($invoice->starting_balance) / 100, 2) }}</strong>
+					<strong>-R{{ number_format(abs($invoice->starting_balance) / 100, 2) }}</strong>
 				@endif
 			</td>
 		</tr>
@@ -142,6 +142,6 @@
 	<tr style="border-top:2px solid #000;">
 		<td>&nbsp;</td>
 		<td style="text-align: right;"><strong>Amount Paid:</strong.</td>
-		<td><strong>${{ number_format($invoice->amount / 100, 2) }}</strong></td>
+		<td><strong>R{{ number_format($invoice->amount / 100, 2) }}</strong></td>
 	</tr>
 </table>
