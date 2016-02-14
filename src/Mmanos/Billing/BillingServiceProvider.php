@@ -32,7 +32,7 @@ class BillingServiceProvider extends ServiceProvider
 	 */
 	public function register()
 	{
-		$this->app->bindShared('billing.gateway', function ($app) {
+		$this->app->singleton('billing.gateway', function ($app) {
 			switch (config('billing.default')) {
 				case 'stripe':
 					return new \Mmanos\Billing\Gateways\Stripe\Gateway;
@@ -45,22 +45,22 @@ class BillingServiceProvider extends ServiceProvider
 			}
 		});
 		
-		$this->app->bindShared('command.laravel-billing.customer-table', function ($app) {
+		$this->app->singleton('command.laravel-billing.customer-table', function ($app) {
 			return new CustomerTableCommand;
 		});
 		$this->commands('command.laravel-billing.customer-table');
 		
-		$this->app->bindShared('command.laravel-billing.subscription-table', function ($app) {
+		$this->app->singleton('command.laravel-billing.subscription-table', function ($app) {
 			return new SubscriptionTableCommand;
 		});
 		$this->commands('command.laravel-billing.subscription-table');
 		
-		$this->app->bindShared('command.laravel-billing.local-create-plan', function ($app) {
+		$this->app->singleton('command.laravel-billing.local-create-plan', function ($app) {
 			return new LocalCreatePlanCommand;
 		});
 		$this->commands('command.laravel-billing.local-create-plan');
 		
-		$this->app->bindShared('command.laravel-billing.local-create-coupon', function ($app) {
+		$this->app->singleton('command.laravel-billing.local-create-coupon', function ($app) {
 			return new LocalCreateCouponCommand;
 		});
 		$this->commands('command.laravel-billing.local-create-coupon');
